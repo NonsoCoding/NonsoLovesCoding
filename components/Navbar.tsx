@@ -20,9 +20,11 @@ const Navbar = () => {
     ]
 
     return (
-        <section className="py-1 shadow-xl w-full sticky inset-0 bg-[#191919]">
+        <section className="py-6 shadow-xl w-full sticky inset-0 bg-[#191919]">
             <div className="flex justify-between items-center mx-auto w-[80%]">
-                <img className="h-15" src="./MyLogo.png" alt="" />
+                <div>
+                    <p className="text-2xl text-[#A7A7A7] font-semibold">NonsoLovesCoding</p>
+                </div>
                 <div className="flex justify-between items-center gap-8">
                 <nav className="flex gap-8">
                     {NavItems.map((items, index) => {
