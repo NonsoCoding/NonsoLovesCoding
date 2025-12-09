@@ -54,7 +54,7 @@ const Footer = () => {
         }}
       />
 
-      <div className="relative z-10 w-[90%] max-w-7xl mx-auto py-16">
+      <div className="relative z-10 w-[90%] max-w-7xl mx-auto pt-8 pb-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}

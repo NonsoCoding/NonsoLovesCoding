@@ -49,7 +49,7 @@ const Projects = () => {
   ];
 
   return (
-    <section className="w-full pb-20">
+    <section className="w-full">
       <div className="w-[80%] mx-auto flex flex-col gap-15">
         <div className="items-center flex flex-col gap-4">
           <p className="text-5xl text-[#D3D3D3] font-bold">Projects</p>

@@ -7,7 +7,7 @@ const Hero = () => {
     <section className="w-full mt-10">
       <div className="mx-auto w-[80%] flex flex-col md:flex-row gap-10 md:gap-20 items-center">
         <div className="w-[100%] text-[#D9D9D9] font-bold">
-          <p className="text-5xl">Hi 👋,</p>
+          <p className="text-5xl">Hi,</p>
           <p className="text-5xl">My name is Chukwunonso obi</p>
           <p className="text-xl">I am a </p>
           <TypeAnimation

@@ -7,7 +7,7 @@ const MyTools = ({}) => {
   ];
 
   return (
-    <section className="w-full pb-40 pt-20 relative overflow-hidden">
+    <section className="w-full pb-20 md:pb-40 relative overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D3D3D3]/5 to-transparent pointer-events-none" />
 
