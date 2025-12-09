@@ -1,6 +1,4 @@
-interface IMyToolsProps {}
-
-const MyTools = ({}: IMyToolsProps) => {
+const MyTools = ({}) => {
   const TechStacksIcon = [
     { icon: "./vscodeIcon.svg", name: "VS Code" },
     { icon: "./expoIcon.png", name: "Expo" },
@@ -23,7 +21,7 @@ const MyTools = ({}: IMyToolsProps) => {
             <div className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full" />
           </div>
           <p className="text-[#A7A7A7] text-lg text-center max-w-2xl">
-            Technologies I've been working with recently
+            Technologies I&#39;ve been working with recently
           </p>
         </div>
 
