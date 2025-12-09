@@ -2,6 +2,7 @@
 import { Mail, PhoneIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { motion, Variants } from "framer-motion";
 
 const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = useState<number | null>(null);
@@ -37,13 +38,67 @@ const Footer = () => {
     },
   ];
 
+  // Animation variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const socialIconVariants: Variants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+  };
+
+  const dividerVariants: Variants = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <footer className="w-full relative overflow-hidden mt-32">
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#191919] to-[#0a0a0a]" />
 
       {/* Decorative top wave */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D3D3D3]/50 to-transparent" />
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D3D3D3]/50 to-transparent"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" as const }}
+      />
 
       {/* Subtle grid pattern overlay */}
       <div
@@ -56,9 +111,15 @@ const Footer = () => {
 
       <div className="relative z-10 w-[90%] max-w-7xl mx-auto pt-8 pb-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Brand Section */}
-          <div className="space-y-6">
+          <motion.div className="space-y-6" variants={itemVariants}>
             <div className="group cursor-pointer inline-block">
               <h2 className="text-3xl font-bold text-[#D3D3D3] group-hover:text-white transition-colors duration-300">
                 Nonso<span className="text-[#A7A7A7]">LovesCoding</span>
@@ -76,7 +137,7 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="flex gap-4">
               {SocialsIcon.map((item, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={item.link}
                   target="_blank"
@@ -90,6 +151,10 @@ const Footer = () => {
                   onMouseEnter={() => setHoveredSocial(index)}
                   onMouseLeave={() => setHoveredSocial(null)}
                   aria-label={item.label}
+                  variants={socialIconVariants}
+                  custom={index}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <div
                     className="w-6 h-6 transition-all duration-300 
@@ -120,38 +185,45 @@ const Footer = () => {
                                   bg-[#D3D3D3] rotate-45"
                     />
                   </span>
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div className="space-y-6">
+          <motion.div className="space-y-6" variants={itemVariants}>
             <h3 className="text-lg font-bold text-[#D3D3D3] tracking-wide">
               Quick Links
             </h3>
             <nav className="grid grid-cols-2 gap-4">
               {NavItems.map((item, index) => (
-                <Link
+                <motion.div
                   key={index}
-                  href={item.link}
-                  className="group flex items-center gap-2 text-[#A7A7A7] hover:text-[#D3D3D3]
-                           transition-all duration-300"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
                 >
-                  <span
-                    className="w-0 group-hover:w-2 h-px bg-[#D3D3D3] 
+                  <Link
+                    href={item.link}
+                    className="group flex items-center gap-2 text-[#A7A7A7] hover:text-[#D3D3D3]
+                           transition-all duration-300"
+                  >
+                    <span
+                      className="w-0 group-hover:w-2 h-px bg-[#D3D3D3] 
                                  transition-all duration-300"
-                  />
-                  <span className="group-hover:translate-x-1 transition-transform duration-300">
-                    {item.name}
-                  </span>
-                </Link>
+                    />
+                    <span className="group-hover:translate-x-1 transition-transform duration-300">
+                      {item.name}
+                    </span>
+                  </Link>
+                </motion.div>
               ))}
             </nav>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
+          <motion.div className="space-y-6" variants={itemVariants}>
             <h3 className="text-lg font-bold text-[#D3D3D3] tracking-wide">
               Get In Touch
             </h3>
@@ -159,29 +231,40 @@ const Footer = () => {
               {contactInfo.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
-                  <a
+                  <motion.a
                     key={index}
                     href={item.link}
                     className="group flex items-start gap-3 text-[#A7A7A7] hover:text-[#D3D3D3]
                              transition-all duration-300"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.15, duration: 0.5 }}
+                    whileHover={{ x: 5 }}
                   >
                     <IconComponent className="w-5 h-5 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
                     <span className="group-hover:translate-x-1 transition-transform duration-300 break-all">
                       {item.text}
                     </span>
-                  </a>
+                  </motion.a>
                 );
               })}
             </div>
 
             {/* CTA Button */}
-            <a
+            <motion.a
               href="#contact"
               className="group inline-flex items-center gap-2 px-6 py-3 
                        bg-gradient-to-r from-[#D3D3D3] to-[#A7A7A7]
                        text-[#191919] font-bold rounded-lg
                        hover:shadow-[0_0_30px_rgba(211,211,211,0.4)]
                        hover:scale-105 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <span>Start a Project</span>
               <svg
@@ -197,43 +280,84 @@ const Footer = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
 
         {/* Divider with gradient */}
-        <div className="relative h-px my-12">
+        <motion.div
+          className="relative h-px my-12"
+          variants={dividerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D3D3D3]/30 to-transparent" />
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+        <motion.div
+          className="flex flex-col md:flex-row justify-between items-center gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <p className="text-[#A7A7A7] text-sm text-center md:text-left">
             © {new Date().getFullYear()} NonsoLovesCoding. All rights reserved.
           </p>
 
           <div className="flex items-center gap-2 text-[#A7A7A7] text-sm">
             <span>Designed and built with</span>
-            <span className="inline-block animate-pulse text-red-400">
+            <motion.span
+              className="inline-block text-red-400"
+              animate={{
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            >
               love
-            </span>
+            </motion.span>
             <span>and</span>
-            <span className="inline-block hover:rotate-12 transition-transform duration-300">
+            <motion.span
+              className="inline-block"
+              whileHover={{ rotate: 12 }}
+              transition={{ duration: 0.3 }}
+            >
               coffee
-            </span>
+            </motion.span>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Floating particles effect (optional decoration) */}
-        <div
-          className="absolute top-10 left-10 w-2 h-2 bg-[#D3D3D3]/20 rounded-full 
-                      animate-ping"
-          style={{ animationDuration: "3s" }}
+        {/* Floating particles effect */}
+        <motion.div
+          className="absolute top-10 left-10 w-2 h-2 bg-[#D3D3D3]/20 rounded-full"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut" as const,
+          }}
         />
-        <div
-          className="absolute bottom-20 right-20 w-3 h-3 bg-[#A7A7A7]/20 rounded-full 
-                      animate-ping"
-          style={{ animationDuration: "4s", animationDelay: "1s" }}
+        <motion.div
+          className="absolute bottom-20 right-20 w-3 h-3 bg-[#A7A7A7]/20 rounded-full"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut" as const,
+            delay: 1,
+          }}
         />
       </div>
     </footer>

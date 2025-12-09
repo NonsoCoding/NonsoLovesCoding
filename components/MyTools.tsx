@@ -1,10 +1,57 @@
-const MyTools = ({}) => {
+"use client";
+
+import { motion, Variants } from "framer-motion";
+
+const MyTools = () => {
   const TechStacksIcon = [
     { icon: "./vscodeIcon.svg", name: "VS Code" },
     { icon: "./expoIcon.png", name: "Expo" },
     { icon: "./androidStudioIcon.png", name: "Android Studio" },
     { icon: "./xcodeIcon.png", name: "Xcode" },
   ];
+
+  // Container animation - for staggering children
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  // Individual card animation
+  const cardVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  // Header animations
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, y: -30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
 
   return (
     <section className="w-full pb-20 md:pb-40 relative overflow-hidden">
@@ -13,23 +60,50 @@ const MyTools = ({}) => {
 
       <div className="mx-auto w-[90%] max-w-7xl relative z-10">
         {/* Header Section */}
-        <div className="flex flex-col items-center mb-16 space-y-3">
+        <motion.div
+          className="flex flex-col items-center mb-16 space-y-3"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="inline-block">
             <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
               My Tools
             </p>
-            <div className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full" />
+            <motion.div
+              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
           </div>
           <p className="text-[#A7A7A7] text-lg text-center max-w-2xl">
             Technologies I&#39;ve been working with recently
           </p>
-        </div>
+        </motion.div>
 
         {/* Tools Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {TechStacksIcon.map((items, index) => {
             return (
-              <div key={index} className="group relative">
+              <motion.div
+                key={index}
+                className="group relative"
+                variants={cardVariants}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
                 {/* Card */}
                 <div
                   className="relative bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] rounded-2xl p-8 
@@ -48,16 +122,17 @@ const MyTools = ({}) => {
                   />
 
                   {/* Icon container */}
-                  <div
-                    className="relative z-10 w-full h-full flex items-center justify-center
-                                transition-transform duration-300 group-hover:scale-110"
+                  <motion.div
+                    className="relative z-10 w-full h-full flex items-center justify-center"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                    transition={{ duration: 0.5 }}
                   >
                     <img
                       className="w-16 h-16 md:w-20 md:h-20 object-contain filter drop-shadow-lg"
                       src={items.icon}
                       alt={items.name}
                     />
-                  </div>
+                  </motion.div>
 
                   {/* Tool name - appears on hover */}
                   <div
@@ -80,10 +155,10 @@ const MyTools = ({}) => {
                   className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#D3D3D3]/0 
                               group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-br-lg"
                 />
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
