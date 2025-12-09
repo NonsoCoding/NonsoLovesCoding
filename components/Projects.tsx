@@ -1,6 +1,4 @@
 "use client";
-
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 
@@ -136,7 +134,7 @@ const Projects = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Things I've built so far
+            Things I&apos;ve built so far
           </motion.p>
         </motion.div>
 
@@ -181,6 +179,8 @@ const Projects = () => {
                         alt={items.name}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
+                        width={500}
+                        height={300}
                       />
                     </div>
 
@@ -274,6 +274,8 @@ const Projects = () => {
                         alt={items.name}
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
+                        width={500}
+                        height={300}
                       />
                     </div>
 
