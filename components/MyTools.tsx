@@ -1,27 +1,24 @@
-const TechStack = () => {
+interface IMyToolsProps {}
+
+const MyTools = ({}: IMyToolsProps) => {
   const TechStacksIcon = [
-    { icon: "./HtmlIcon.svg", name: "HTML" },
-    { icon: "./cssIcon.svg", name: "CSS" },
-    { icon: "./javascriptIcon.svg", name: "Javascript" },
-    { icon: "./typescriptIcon.png", name: "Typescript" },
-    { icon: "./ReactIcon.svg", name: "React Native" },
-    { icon: "./TailwindIcon.svg", name: "Tailwind" },
-    { icon: "./GitIcon.svg", name: "Git" },
-    { icon: "./firerbaseIcon.png", name: "Firebase" },
-    { icon: "./githubIcon.svg", name: "Github" },
+    { icon: "./vscodeIcon.svg", name: "VS Code" },
+    { icon: "./expoIcon.png", name: "Expo" },
+    { icon: "./androidStudioIcon.png", name: "Android Studio" },
+    { icon: "./xcodeIcon.png", name: "Xcode" },
   ];
 
   return (
-    <section className="w-full pt-40 pb-20 relative overflow-hidden">
+    <section className="w-full pb-40 pt-20 relative overflow-hidden">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D3D3D3]/5 to-transparent pointer-events-none" />
 
-      <div className="mx-auto w-[90%] max-w-6xl relative z-10">
+      <div className="mx-auto w-[90%] max-w-7xl relative z-10">
         {/* Header Section */}
         <div className="flex flex-col items-center mb-16 space-y-3">
           <div className="inline-block">
             <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
-              My Stack
+              My Tools
             </p>
             <div className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full" />
           </div>
@@ -31,7 +28,7 @@ const TechStack = () => {
         </div>
 
         {/* Tools Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto">
           {TechStacksIcon.map((items, index) => {
             return (
               <div key={index} className="group relative">
@@ -94,4 +91,4 @@ const TechStack = () => {
   );
 };
 
-export default TechStack;
+export default MyTools;
