@@ -52,7 +52,7 @@ const Navbar = () => {
         {/* Subtle top gradient line */}
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D3D3D3]/30 to-transparent" />
 
-        <div className="flex justify-between items-center mx-auto w-[90%] max-w-7xl">
+        <div className="flex justify-between items-center mx-auto w-[80%]">
           {/* Logo */}
           <div className="group cursor-pointer">
             <p

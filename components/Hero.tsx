@@ -14,7 +14,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.p
-            className="text-5xl"
+            className="text-7xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -22,7 +22,7 @@ const Hero = () => {
             Hi,
           </motion.p>
           <motion.p
-            className="text-5xl"
+            className="text-7xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -30,7 +30,7 @@ const Hero = () => {
             My name is Chukwunonso obi
           </motion.p>
           <motion.p
-            className="text-xl"
+            className="text-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
