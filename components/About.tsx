@@ -1,6 +1,6 @@
 const About = ({}) => {
   return (
-    <section>
+    <section className="">
       <div></div>
     </section>
   );
