@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="w-full mt-10">
+    <section className="w-full mt-20">
       <div className="mx-auto w-[80%] flex flex-col md:flex-row gap-10 md:gap-20 items-center">
         <motion.div
-          className="w-[100%] text-[#D9D9D9] font-bold"
+          className="w-[100%] md:w-[50%] text-[#D9D9D9] font-bold"
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -66,7 +66,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
         >
           <img
-            className="h-full p-[4px] rounded-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500"
+            className="h-full p-[4px] rounded-2xl"
             src="./pfp.jpeg"
             alt=""
           />

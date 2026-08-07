@@ -189,7 +189,7 @@ const Projects = () => {
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
-      githubApk: "https://github.com/NonsoCoding/Giftincash",
+      githubApk: "https://github.com/404Enterprise/gift-in-cash",
     },
     {
       image: "./LasMobileImages/Las1.png",
@@ -204,7 +204,7 @@ const Projects = () => {
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
-      githubApk: "https://github.com/NonsoCoding/Giftincash",
+      githubApk: "https://github.com/NonsoCoding/LAS-MOBILE",
     },
     {
       image: "./MDBImages/MDBImages/Las1.png",
@@ -219,7 +219,7 @@ const Projects = () => {
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
-      githubApk: "https://github.com/NonsoCoding/Giftincash",
+      githubApk: "https://github.com/NonsoCoding/Mydevotionalbook",
     },
     {
       image: "./LearnliftImages/learnlift1.png",
