@@ -182,7 +182,7 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/Homez",
     },
     {
-      image: "./anhelina.png",
+      image: "./anhelina/anhelinaImage.png",
       name: "Anhelina",
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "HTML , JavaScript, SASS, React",
@@ -190,7 +190,7 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/anhelina-front",
     },
     {
-      image: "./capitalgadget.png",
+      image: "./CapitalGadgetz/capitalImage.png",
       name: "CapitalGadgetz",
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "HTML , JavaScript, SASS, React",
