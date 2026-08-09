@@ -174,11 +174,11 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/Homez",
     },
     {
-      image: "./Homez.png",
-      name: "Homez Estates",
+      image: "./404enterprise/404image.png",
+      name: "404Enterprise",
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
       stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://homez-ivory.vercel.app/",
+      projectLink: "https://404enterprise.com/",
       githubLink: "https://github.com/NonsoCoding/Homez",
     },
     {
@@ -210,10 +210,12 @@ const Projects = () => {
         "./GiftincashImages/Giftincash5.png",
       ],
       name: "Giftincash",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
       githubApk: "https://github.com/404Enterprise/gift-in-cash",
+      appstore: "",
+      playstore: ""
     },
     {
       image: "./LasMobileImages/Las1.png",
@@ -229,6 +231,8 @@ const Projects = () => {
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "https://github.com/NonsoCoding/LAS-MOBILE",
       githubApk: "https://github.com/NonsoCoding/LAS-MOBILE",
+      appstore: "https://apps.apple.com/ng/app/las-mobile/id6785944990",
+      playstore: ""
     },
     {
       image: "./MDBImages/MDBImages/Las1.png",
@@ -239,11 +243,13 @@ const Projects = () => {
         "./MDBImages/MDB4.png",
         "./MDBImages/MDB5.png",
       ],
-      name: "Las Mobile App",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      name: "Mydevotionalbook",
+      info: "A feature-rich spiritual companion application designed to provide users with daily devotional content, structured reading plans, offline access, and audio streaming capabilities.",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Mydevotionalbook",
+      appstore: "https://apps.apple.com/ng/app/my-devotional-app/id6740229712",
+      playstore: ""
     },
     {
       image: "./LearnliftImages/learnlift1.png",
@@ -254,11 +260,13 @@ const Projects = () => {
         "./LearnliftImages/learnlift5.png",
         "./LearnliftImages/learnlift4.png",
       ],
-      name: "Las Mobile App",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      name: "Learnlift",
+      info: "An educational application designed to enhance learning outcomes for primary, secondary, and tertiary students through video courses, AI-driven study recommendations, and interactive CBT (Computer-Based Test) practice modules.",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Giftincash",
+      appstore: "https://apps.apple.com/ng/app/learnlift/id6743348693",
+      playstore: ""
     },
   ];
 
@@ -512,6 +520,38 @@ const Projects = () => {
                             View Code
                           </a>
                         </motion.div>
+                        <div className="flex items-center gap-5">
+                        <motion.div
+                          className="flex items-center gap-2"
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <img className="h-5" src="./Stores/appstore.png" alt="" />
+                          <a
+                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={items.appstore}
+                          >
+                            App Store
+                          </a>
+                        </motion.div>
+                        <motion.div
+                          className="flex items-center gap-2"
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <img className="h-5" src="./Stores/google-play.png" alt="" />
+                          <a
+                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={items.githubLink || items.githubApk}
+                          >
+                            Play Store
+                          </a>
+                        </motion.div>
+                        </div>
                       </div>
                     </div>
                   </motion.div>
