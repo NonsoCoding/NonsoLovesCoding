@@ -150,6 +150,30 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
 const Projects = () => {
   const WebProjectsList = [
     {
+      image: "./GiftincashImages/GiftincashWeb.png",
+      name: "Giftincash",
+      info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
+      stack: "HTML , JavaScript, SASS, React",
+      projectLink: "https://giftincash.com/",
+      githubLink: "https://github.com/404Enterprise/gift-in-cash",
+    },
+    {
+      image: "./LasMobileImages/LasWeb.png",
+      name: "Las Mobile",
+      info: "An enterprise-grade logistics and delivery management application built for real-time shipment visibility, automated routing, and reliable field operation tracking.",
+      stack: "HTML , JavaScript, SASS, React",
+      projectLink: "https://www.lastechnologiesltd.com/",
+      githubLink: "https://github.com/NonsoCoding/Las-Mobile-Website",
+    },
+    {
+      image: "./RuthEgbeImages/ruthegbe.png",
+      name: "RuthEgbe",
+      info: "A professional thought-leadership and consultation platform designed for a development catalyst, change engineer, and leadership coach, built to showcase programs, mentorship ecosystems, and insights.",
+      stack: "HTML , JavaScript, SASS, React",
+      projectLink: "https://ruthegbe.com/",
+      githubLink: "https://github.com/NonsoCoding/Homez",
+    },
+    {
       image: "./Homez.png",
       name: "Homez Estates",
       info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
@@ -201,9 +225,9 @@ const Projects = () => {
         "./LasMobileImages/Las5.png",
       ],
       name: "Las Mobile App",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      info: "An enterprise-grade logistics and delivery management application built for real-time shipment visibility, automated routing, and reliable field operation tracking.",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
-      githubLink: "",
+      githubLink: "https://github.com/NonsoCoding/LAS-MOBILE",
       githubApk: "https://github.com/NonsoCoding/LAS-MOBILE",
     },
     {
@@ -295,7 +319,7 @@ const Projects = () => {
 
   return (
     <section className="w-full">
-      <div className="w-[80%] mx-auto flex flex-col gap-15">
+      <div className="w-[90%] mx-auto flex flex-col gap-15">
         {/* Main Header */}
         <motion.div
           className="items-center flex flex-col gap-4"
