@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="w-full mt-20">
+    <section className="w-full mt-8">
       <div className="mx-auto w-[90%] flex flex-col md:flex-row gap-10 md:gap-20 items-center">
         <motion.div
           className="w-[100%] md:w-[50%] text-[#D9D9D9] font-bold"
