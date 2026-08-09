@@ -201,23 +201,6 @@ const Projects = () => {
 
   const MobileAppProjectList = [
     {
-      image: "./GiftincashImages/Giftincash4.png",
-      images: [
-        "./GiftincashImages/Giftincash1.png",
-        "./GiftincashImages/Giftincash2.png",
-        "./GiftincashImages/Giftincash3.png",
-        "./GiftincashImages/Giftincash4.png",
-        "./GiftincashImages/Giftincash5.png",
-      ],
-      name: "Giftincash",
-      info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
-      stack: "JavaScript, ReactNative, Expo, Tailwind",
-      githubLink: "",
-      githubApk: "https://github.com/404Enterprise/gift-in-cash",
-      appstore: "",
-      playstore: ""
-    },
-    {
       image: "./LasMobileImages/Las1.png",
       images: [
         "./LasMobileImages/Las1.png",
@@ -232,7 +215,7 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/LAS-MOBILE",
       githubApk: "https://github.com/NonsoCoding/LAS-MOBILE",
       appstore: "https://apps.apple.com/ng/app/las-mobile/id6785944990",
-      playstore: ""
+      playstore: "https://play.google.com/store/apps/details?id=com.nonsolovescoding.lastechnologiesmobileapp&pcampaignid=web_share"
     },
     {
       image: "./MDBImages/MDBImages/Las1.png",
@@ -249,7 +232,7 @@ const Projects = () => {
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Mydevotionalbook",
       appstore: "https://apps.apple.com/ng/app/my-devotional-app/id6740229712",
-      playstore: ""
+      playstore: "https://play.google.com/store/apps/details?id=com.mydevotionalbook.app&hl=en"
     },
     {
       image: "./LearnliftImages/learnlift1.png",
@@ -266,6 +249,23 @@ const Projects = () => {
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Giftincash",
       appstore: "https://apps.apple.com/ng/app/learnlift/id6743348693",
+      playstore: "https://play.google.com/store/apps/details?id=com.imoh.learnlift&pcampaignid=web_share"
+    },
+     {
+      image: "./GiftincashImages/Giftincash4.png",
+      images: [
+        "./GiftincashImages/Giftincash1.png",
+        "./GiftincashImages/Giftincash2.png",
+        "./GiftincashImages/Giftincash3.png",
+        "./GiftincashImages/Giftincash4.png",
+        "./GiftincashImages/Giftincash5.png",
+      ],
+      name: "Giftincash",
+      info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
+      stack: "JavaScript, ReactNative, Expo, Tailwind",
+      githubLink: "",
+      githubApk: "https://github.com/404Enterprise/gift-in-cash",
+      appstore: "",
       playstore: ""
     },
   ];
