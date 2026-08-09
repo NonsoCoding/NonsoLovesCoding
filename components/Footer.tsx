@@ -253,7 +253,7 @@ const Footer = () => {
 
             {/* CTA Button */}
             <motion.a
-              href="#contact"
+              href="mailto:timothyobi494@gmail.com?subject=Project%20Inquiry"
               className="group inline-flex items-center gap-2 px-6 py-3 
                        bg-gradient-to-r from-[#D3D3D3] to-[#A7A7A7]
                        text-[#191919] font-bold rounded-lg
