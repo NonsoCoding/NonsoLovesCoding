@@ -27,7 +27,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            My name is Chukwunonso obi
+            My name is Samuel Johnson
           </motion.p>
           <motion.p
             className="text-xl"
@@ -65,11 +65,7 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
         >
-          <img
-            className="h-full p-[4px] rounded-2xl"
-            src="./pfp.jpeg"
-            alt=""
-          />
+          <img className="h-full p-[4px] rounded-2xl" src="./pfp.jpeg" alt="" />
         </motion.div>
       </div>
     </section>
