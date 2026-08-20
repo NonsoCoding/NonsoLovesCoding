@@ -4,10 +4,10 @@ import { motion, Variants } from "framer-motion";
 
 const MyTools = () => {
   const TechStacksIcon = [
-    { icon: "./vscodeIcon.svg", name: "VS Code" },
-    { icon: "./expoIcon.png", name: "Expo" },
-    { icon: "./androidStudioIcon.png", name: "Android Studio" },
-    { icon: "./xcodeIcon.png", name: "Xcode" },
+    { icon: "/vscodeIcon.svg", name: "VS Code" },
+    { icon: "/expoIcon.png", name: "Expo" },
+    { icon: "/androidStudioIcon.png", name: "Android Studio" },
+    { icon: "/xcodeIcon.png", name: "Xcode" },
   ];
 
   // Container animation - for staggering children
@@ -56,7 +56,7 @@ const MyTools = () => {
   return (
     <section className="w-full pb-20 md:pb-40 relative overflow-hidden">
       {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D3D3D3]/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink/5 to-transparent pointer-events-none" />
 
       <div className="mx-auto w-[90%] max-w-7xl relative z-10">
         {/* Header Section */}
@@ -68,18 +68,18 @@ const MyTools = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="inline-block">
-            <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
+            <p className="text-4xl md:text-5xl text-ink font-bold tracking-tight">
               My Tools
             </p>
             <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
+              className="h-1 bg-gradient-to-r from-transparent via-ink to-transparent mt-2 rounded-full"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
           </div>
-          <p className="text-[#A7A7A7] text-lg text-center max-w-2xl">
+          <p className="text-ink-3 text-lg text-center max-w-2xl">
             Technologies I&#39;ve been working with recently
           </p>
         </motion.div>
@@ -106,18 +106,18 @@ const MyTools = () => {
               >
                 {/* Card */}
                 <div
-                  className="relative bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] rounded-2xl p-8 
-                              border border-[#D3D3D3]/10 
+                  className="relative bg-gradient-to-br from-elevated to-canvas-2 rounded-2xl p-8 
+                              border border-ink/10 
                               transition-all duration-300 ease-out
-                              hover:border-[#D3D3D3]/30
-                              hover:shadow-[0_0_30px_rgba(211,211,211,0.1)]
+                              hover:border-ink/30
+                              hover:shadow-[0_0_30px_var(--glow-soft)]
                               hover:-translate-y-2
                               aspect-square flex flex-col items-center justify-center"
                 >
                   {/* Glow effect on hover */}
                   <div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D3D3D3]/0 to-[#D3D3D3]/0 
-                                group-hover:from-[#D3D3D3]/5 group-hover:to-transparent 
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-ink/0 to-ink/0 
+                                group-hover:from-ink/5 group-hover:to-transparent 
                                 transition-all duration-300"
                   />
 
@@ -140,7 +140,7 @@ const MyTools = () => {
                                 opacity-0 group-hover:opacity-100
                                 transition-opacity duration-300"
                   >
-                    <p className="text-[#D3D3D3] text-sm font-medium">
+                    <p className="text-ink text-sm font-medium">
                       {items.name}
                     </p>
                   </div>
@@ -148,12 +148,12 @@ const MyTools = () => {
 
                 {/* Decorative corner accents */}
                 <div
-                  className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-tl-lg"
+                  className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-ink/0 
+                              group-hover:border-ink/50 transition-all duration-300 rounded-tl-lg"
                 />
                 <div
-                  className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-br-lg"
+                  className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-ink/0 
+                              group-hover:border-ink/50 transition-all duration-300 rounded-br-lg"
                 />
               </motion.div>
             );

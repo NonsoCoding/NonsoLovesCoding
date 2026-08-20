@@ -8,13 +8,15 @@ import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="min-h-screen bg-canvas">
       <Navbar />
-      <Hero />
-      <About />
-      <TechStack />
-      <MyTools />
-      <Projects />
+      <main>
+        <Hero />
+        <About />
+        <TechStack />
+        <MyTools />
+        <Projects />
+      </main>
       <Footer />
     </div>
   );

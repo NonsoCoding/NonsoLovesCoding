@@ -4,15 +4,25 @@ import { motion, Variants } from "framer-motion";
 
 const TechStack = () => {
   const TechStacksIcon = [
-    { icon: "./HtmlIcon.svg", name: "HTML" },
-    { icon: "./cssIcon.svg", name: "CSS" },
-    { icon: "./javascriptIcon.svg", name: "Javascript" },
-    { icon: "./typescriptIcon.png", name: "Typescript" },
-    { icon: "./ReactIcon.svg", name: "React Native" },
-    { icon: "./TailwindIcon.svg", name: "Tailwind" },
-    { icon: "./GitIcon.svg", name: "Git" },
-    { icon: "./firerbaseIcon.png", name: "Firebase" },
-    { icon: "./githubIcon.svg", name: "Github" },
+    { icon: "/ReactIcon.svg", name: "React Native" },
+    { icon: "/expoIcon.png", name: "Expo" },
+    { icon: "/typescriptIcon.png", name: "Typescript" },
+    { icon: "/javascriptIcon.svg", name: "Javascript" },
+    { icon: "/next.svg", name: "Next.js" },
+    { icon: "/TailwindIcon.svg", name: "Tailwind" },
+    { icon: "/firerbaseIcon.png", name: "Firebase" },
+    { icon: "/HtmlIcon.svg", name: "HTML" },
+    { icon: "/cssIcon.svg", name: "CSS" },
+    { icon: "/GitIcon.svg", name: "Git" },
+    { icon: "/githubIcon.svg", name: "Github" },
+  ];
+
+  // Skills from the CV that have no icon asset in /public.
+  const AlsoWorkingWith = [
+    "Flutter & Dart",
+    "REST & GraphQL APIs",
+    "AWS Cloud & EAS Build",
+    "App Store & Play Console Publishing",
   ];
 
   // Container animation - for staggering children
@@ -59,9 +69,9 @@ const TechStack = () => {
   };
 
   return (
-    <section className="w-full pt-20 md:pt-40 pb-20 relative overflow-hidden">
+    <section id="tech-stack" className="w-full scroll-mt-24 pt-20 md:pt-40 pb-20 relative overflow-hidden">
       {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D3D3D3]/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink/5 to-transparent pointer-events-none" />
 
       <div className="mx-auto w-[90%] max-w-6xl relative z-10">
         {/* Header Section */}
@@ -73,18 +83,18 @@ const TechStack = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="inline-block">
-            <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
+            <p className="text-4xl md:text-5xl text-ink font-bold tracking-tight">
               My Stack
             </p>
             <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
+              className="h-1 bg-gradient-to-r from-transparent via-ink to-transparent mt-2 rounded-full"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
           </div>
-          <p className="text-[#A7A7A7] text-lg text-center max-w-2xl">
+          <p className="text-ink-3 text-lg text-center max-w-2xl">
             Technologies Stacks I&#39;ve been working with recently
           </p>
         </motion.div>
@@ -111,18 +121,18 @@ const TechStack = () => {
               >
                 {/* Card */}
                 <div
-                  className="relative bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] rounded-2xl p-8 
-                              border border-[#D3D3D3]/10 
+                  className="relative bg-gradient-to-br from-elevated to-canvas-2 rounded-2xl p-8 
+                              border border-ink/10 
                               transition-all duration-300 ease-out
-                              hover:border-[#D3D3D3]/30
-                              hover:shadow-[0_0_30px_rgba(211,211,211,0.1)]
+                              hover:border-ink/30
+                              hover:shadow-[0_0_30px_var(--glow-soft)]
                               hover:-translate-y-2
                               aspect-square flex flex-col items-center justify-center"
                 >
                   {/* Glow effect on hover */}
                   <div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D3D3D3]/0 to-[#D3D3D3]/0 
-                                group-hover:from-[#D3D3D3]/5 group-hover:to-transparent 
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-ink/0 to-ink/0 
+                                group-hover:from-ink/5 group-hover:to-transparent 
                                 transition-all duration-300"
                   />
 
@@ -145,7 +155,7 @@ const TechStack = () => {
                                 opacity-0 group-hover:opacity-100
                                 transition-opacity duration-300"
                   >
-                    <p className="text-[#D3D3D3] text-sm font-medium">
+                    <p className="text-ink text-sm font-medium">
                       {items.name}
                     </p>
                   </div>
@@ -153,16 +163,42 @@ const TechStack = () => {
 
                 {/* Decorative corner accents */}
                 <div
-                  className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-tl-lg"
+                  className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-ink/0 
+                              group-hover:border-ink/50 transition-all duration-300 rounded-tl-lg"
                 />
                 <div
-                  className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-br-lg"
+                  className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-ink/0 
+                              group-hover:border-ink/50 transition-all duration-300 rounded-br-lg"
                 />
               </motion.div>
             );
           })}
+        </motion.div>
+
+        {/* Skills without an icon asset */}
+        <motion.div
+          className="mt-14 flex flex-col items-center gap-5"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <p className="font-mono text-xs tracking-[0.25em] uppercase text-ink-3">
+            Also working with
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {AlsoWorkingWith.map((item) => (
+              <span
+                key={item}
+                className="px-4 py-2 rounded-full text-sm font-medium
+                           border border-ink/15 bg-surface text-ink-2
+                           transition-all duration-300
+                           hover:border-accent hover:text-accent hover:-translate-y-0.5"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

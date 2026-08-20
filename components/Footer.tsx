@@ -1,5 +1,5 @@
 "use client";
-import { Mail, PhoneIcon } from "lucide-react";
+import { Mail, MapPin, PhoneIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
@@ -8,7 +8,7 @@ const Footer = () => {
   const [hoveredSocial, setHoveredSocial] = useState<number | null>(null);
 
   const NavItems = [
-    { name: "Home", link: "/" },
+    { name: "Home", link: "#home" },
     { name: "About", link: "#about" },
     { name: "Tech Stack", link: "#tech-stack" },
     { name: "Projects", link: "#projects" },
@@ -17,13 +17,12 @@ const Footer = () => {
 
   const SocialsIcon = [
     {
-      socialIcon: "./github.svg",
+      socialIcon: "/github.svg",
       link: "https://github.com/NonsoCoding",
       label: "GitHub",
     },
-    { socialIcon: "./twitter.svg", link: "/", label: "Twitter" },
     {
-      socialIcon: "./linkdln.svg",
+      socialIcon: "/linkdln.svg",
       link: "https://www.linkedin.com/in/chukwunonso-obi-b19b22244/",
       label: "LinkedIn",
     },
@@ -35,6 +34,11 @@ const Footer = () => {
       icon: Mail,
       text: "timothyobi494@gmail.com",
       link: "mailto:timothyobi494@gmail.com",
+    },
+    {
+      icon: MapPin,
+      text: "Abuja, Nigeria",
+      link: "https://www.google.com/maps/search/?api=1&query=Abuja,+Nigeria",
     },
   ];
 
@@ -87,13 +91,16 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full relative overflow-hidden mt-32">
+    <footer
+      id="contact"
+      className="w-full scroll-mt-24 relative overflow-hidden mt-32"
+    >
       {/* Animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-[#191919] to-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-canvas-2 via-canvas to-canvas-2" />
 
       {/* Decorative top wave */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D3D3D3]/50 to-transparent"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-ink/50 to-transparent"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
@@ -102,9 +109,9 @@ const Footer = () => {
 
       {/* Subtle grid pattern overlay */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #D3D3D3 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -121,17 +128,18 @@ const Footer = () => {
           {/* Brand Section */}
           <motion.div className="space-y-6" variants={itemVariants}>
             <div className="group cursor-pointer inline-block">
-              <h2 className="text-3xl font-bold text-[#D3D3D3] group-hover:text-white transition-colors duration-300">
-                Nonso<span className="text-[#A7A7A7]">LovesCoding</span>
+              <h2 className="text-3xl font-bold text-ink group-hover:text-bright transition-colors duration-300">
+                Nonso<span className="text-ink-3">LovesCoding</span>
               </h2>
               <div
-                className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-[#D3D3D3] to-[#A7A7A7] 
+                className="h-1 w-0 group-hover:w-full bg-gradient-to-r from-ink to-ink-3 
                             transition-all duration-500 rounded-full mt-2"
               />
             </div>
-            <p className="text-[#A7A7A7] text-sm leading-relaxed max-w-xs">
-              Crafting digital experiences with passion, precision, and a whole
-              lot of coffee ☕
+            <p className="text-ink-3 text-sm leading-relaxed max-w-xs">
+              Mobile Engineer &amp; Solutions Architect. I build cross-platform
+              apps with React Native, Expo and TypeScript — from system design
+              through to a live App Store and Play Console release.
             </p>
 
             {/* Social Icons */}
@@ -143,11 +151,11 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative w-12 h-12 flex items-center justify-center
-                           rounded-xl bg-[#2A2A2A] border border-[#D3D3D3]/10
+                           rounded-xl bg-elevated border border-ink/10
                            transition-all duration-300 ease-out
-                           hover:bg-[#D3D3D3] hover:border-[#D3D3D3]
+                           hover:bg-ink hover:border-ink
                            hover:scale-110 hover:rotate-6
-                           hover:shadow-[0_0_30px_rgba(211,211,211,0.3)]"
+                           hover:shadow-[0_0_30px_var(--glow-strong)]"
                   onMouseEnter={() => setHoveredSocial(index)}
                   onMouseLeave={() => setHoveredSocial(null)}
                   aria-label={item.label}
@@ -170,7 +178,7 @@ const Footer = () => {
                   {/* Animated tooltip */}
                   <span
                     className={`absolute -top-10 left-1/2 -translate-x-1/2
-                                   px-3 py-1.5 bg-[#D3D3D3] text-[#191919] font-medium
+                                   px-3 py-1.5 bg-ink text-canvas font-medium
                                    rounded-lg text-xs whitespace-nowrap
                                    transition-all duration-300 pointer-events-none
                                    ${
@@ -182,7 +190,7 @@ const Footer = () => {
                     {item.label}
                     <div
                       className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 
-                                  bg-[#D3D3D3] rotate-45"
+                                  bg-ink rotate-45"
                     />
                   </span>
                 </motion.a>
@@ -192,7 +200,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <motion.div className="space-y-6" variants={itemVariants}>
-            <h3 className="text-lg font-bold text-[#D3D3D3] tracking-wide">
+            <h3 className="text-lg font-bold text-ink tracking-wide">
               Quick Links
             </h3>
             <nav className="grid grid-cols-2 gap-4">
@@ -206,11 +214,11 @@ const Footer = () => {
                 >
                   <Link
                     href={item.link}
-                    className="group flex items-center gap-2 text-[#A7A7A7] hover:text-[#D3D3D3]
+                    className="group flex items-center gap-2 text-ink-3 hover:text-ink
                            transition-all duration-300"
                   >
                     <span
-                      className="w-0 group-hover:w-2 h-px bg-[#D3D3D3] 
+                      className="w-0 group-hover:w-2 h-px bg-ink 
                                  transition-all duration-300"
                     />
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
@@ -224,7 +232,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <motion.div className="space-y-6" variants={itemVariants}>
-            <h3 className="text-lg font-bold text-[#D3D3D3] tracking-wide">
+            <h3 className="text-lg font-bold text-ink tracking-wide">
               Get In Touch
             </h3>
             <div className="space-y-4">
@@ -234,7 +242,7 @@ const Footer = () => {
                   <motion.a
                     key={index}
                     href={item.link}
-                    className="group flex items-start gap-3 text-[#A7A7A7] hover:text-[#D3D3D3]
+                    className="group flex items-start gap-3 text-ink-3 hover:text-ink
                              transition-all duration-300"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -255,9 +263,9 @@ const Footer = () => {
             <motion.a
               href="mailto:timothyobi494@gmail.com?subject=Project%20Inquiry"
               className="group inline-flex items-center gap-2 px-6 py-3 
-                       bg-gradient-to-r from-[#D3D3D3] to-[#A7A7A7]
-                       text-[#191919] font-bold rounded-lg
-                       hover:shadow-[0_0_30px_rgba(211,211,211,0.4)]
+                       bg-gradient-to-r from-accent to-accent-2
+                       text-accent-ink font-bold rounded-lg
+                       hover:shadow-[0_0_30px_var(--glow-strong)]
                        hover:scale-105 transition-all duration-300"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -292,7 +300,7 @@ const Footer = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D3D3D3]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-ink/30 to-transparent" />
         </motion.div>
 
         {/* Bottom Bar */}
@@ -303,11 +311,11 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-[#A7A7A7] text-sm text-center md:text-left">
+          <p className="text-ink-3 text-sm text-center md:text-left">
             © {new Date().getFullYear()} NonsoLovesCoding. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-2 text-[#A7A7A7] text-sm">
+          <div className="flex items-center gap-2 text-ink-3 text-sm">
             <span>Designed and built with</span>
             <motion.span
               className="inline-block text-red-400"
@@ -335,7 +343,7 @@ const Footer = () => {
 
         {/* Floating particles effect */}
         <motion.div
-          className="absolute top-10 left-10 w-2 h-2 bg-[#D3D3D3]/20 rounded-full"
+          className="absolute top-10 left-10 w-2 h-2 bg-ink/20 rounded-full"
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.2, 0.5, 0.2],
@@ -347,7 +355,7 @@ const Footer = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-3 h-3 bg-[#A7A7A7]/20 rounded-full"
+          className="absolute bottom-20 right-20 w-3 h-3 bg-ink-3/20 rounded-full"
           animate={{
             scale: [1, 1.5, 1],
             opacity: [0.2, 0.5, 0.2],

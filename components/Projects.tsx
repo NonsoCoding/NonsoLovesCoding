@@ -53,7 +53,7 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
   return (
     <div className="relative w-full flex flex-col items-center justify-center pt-4 pb-2 px-4">
       {/* Main Slider Display */}
-      <div className="relative w-full h-[320px] sm:h-[380px] flex items-center justify-center overflow-hidden rounded-xl bg-[#282828] border border-white/5 shadow-inner">
+      <div className="relative w-full h-[320px] sm:h-[380px] flex items-center justify-center overflow-hidden rounded-xl bg-elevated border border-line/10 shadow-inner">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.img
             key={page}
@@ -97,7 +97,10 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
             <motion.button
               type="button"
               aria-label="Previous image"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.85)" }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.85)",
+              }}
               whileTap={{ scale: 0.9 }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -111,7 +114,10 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
             <motion.button
               type="button"
               aria-label="Next image"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.85)" }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(0, 0, 0, 0.85)",
+              }}
               whileTap={{ scale: 0.9 }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -136,8 +142,8 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
               onClick={() => jumpToPage(idx)}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === imageIndex
-                  ? "w-6 bg-white shadow-[0_0_10px_rgba(255,255,255,0.7)]"
-                  : "w-2 bg-white/30 hover:bg-white/60"
+                  ? "w-6 bg-ink shadow-[0_0_10px_var(--glow-strong)]"
+                  : "w-2 bg-ink/30 hover:bg-ink/60"
               }`}
             />
           ))}
@@ -150,7 +156,7 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
 const Projects = () => {
   const WebProjectsList = [
     {
-      image: "./GiftincashImages/GiftincashWeb.png",
+      image: "/GiftincashImages/GiftincashWeb.png",
       name: "Giftincash",
       info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
       stack: "HTML , JavaScript, SASS, React",
@@ -158,7 +164,7 @@ const Projects = () => {
       githubLink: "https://github.com/404Enterprise/gift-in-cash",
     },
     {
-      image: "./LasMobileImages/LasWeb.png",
+      image: "/LasMobileImages/LasWeb.png",
       name: "Las Mobile",
       info: "An enterprise-grade logistics and delivery management application built for real-time shipment visibility, automated routing, and reliable field operation tracking.",
       stack: "HTML , JavaScript, SASS, React",
@@ -166,7 +172,7 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/Las-Mobile-Website",
     },
     {
-      image: "./RuthEgbeImages/ruthegbe.png",
+      image: "/RuthEgbeImages/ruthegbe.png",
       name: "RuthEgbe",
       info: "A professional thought-leadership and consultation platform designed for a development catalyst, change engineer, and leadership coach, built to showcase programs, mentorship ecosystems, and insights.",
       stack: "HTML , JavaScript, SASS, React",
@@ -174,25 +180,25 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/Homez",
     },
     {
-      image: "./404enterprise/404image.png",
+      image: "/404enterprise/404image.png",
       name: "404Enterprise",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      info: "Corporate web presence for a software development studio, presenting service lines, engineering capability and delivered client work.",
       stack: "HTML , JavaScript, SASS, React",
       projectLink: "https://404enterprise.com/",
       githubLink: "https://github.com/NonsoCoding/Homez",
     },
     {
-      image: "./anhelina/anhelinaImage.png",
+      image: "/anhelina/anhelinaImage.png",
       name: "Anhelina",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      info: "A responsive marketing and brand site built with a component-driven front end, focused on clean typography, motion and fast load times.",
       stack: "HTML , JavaScript, SASS, React",
       projectLink: "https://anhelina.vercel.app/",
       githubLink: "https://github.com/NonsoCoding/anhelina-front",
     },
     {
-      image: "./CapitalGadgetz/capitalImage.png",
+      image: "/CapitalGadgetz/capitalImage.png",
       name: "CapitalGadgetz",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
+      info: "An online storefront for consumer electronics, covering product browsing, category filtering and a responsive checkout-oriented layout.",
       stack: "HTML , JavaScript, SASS, React",
       projectLink: "https://capital-gadgetz.vercel.app/",
       githubLink: "https://github.com/NonsoCoding/CapitalGadgetz",
@@ -201,13 +207,13 @@ const Projects = () => {
 
   const MobileAppProjectList = [
     {
-      image: "./LasMobileImages/Las1.png",
+      image: "/LasMobileImages/Las1.png",
       images: [
-        "./LasMobileImages/Las1.png",
-        "./LasMobileImages/Las2.png",
-        "./LasMobileImages/Las3.png",
-        "./LasMobileImages/Las4.png",
-        "./LasMobileImages/Las5.png",
+        "/LasMobileImages/Las1.png",
+        "/LasMobileImages/Las2.png",
+        "/LasMobileImages/Las3.png",
+        "/LasMobileImages/Las4.png",
+        "/LasMobileImages/Las5.png",
       ],
       name: "Las Mobile App",
       info: "An enterprise-grade logistics and delivery management application built for real-time shipment visibility, automated routing, and reliable field operation tracking.",
@@ -215,16 +221,17 @@ const Projects = () => {
       githubLink: "https://github.com/NonsoCoding/LAS-MOBILE",
       githubApk: "https://github.com/NonsoCoding/LAS-MOBILE",
       appstore: "https://apps.apple.com/ng/app/las-mobile/id6785944990",
-      playstore: "https://play.google.com/store/apps/details?id=com.nonsolovescoding.lastechnologiesmobileapp&pcampaignid=web_share"
+      playstore:
+        "https://play.google.com/store/apps/details?id=com.nonsolovescoding.lastechnologiesmobileapp&pcampaignid=web_share",
     },
     {
-      image: "./MDBImages/MDBImages/Las1.png",
+      image: "/MDBImages/MDBImages/Las1.png",
       images: [
-        "./MDBImages/MDB3.png",
-        "./MDBImages/MDB2.png",
-        "./MDBImages/MDB1.png",
-        "./MDBImages/MDB4.png",
-        "./MDBImages/MDB5.png",
+        "/MDBImages/MDB3.png",
+        "/MDBImages/MDB2.png",
+        "/MDBImages/MDB1.png",
+        "/MDBImages/MDB4.png",
+        "/MDBImages/MDB5.png",
       ],
       name: "Mydevotionalbook",
       info: "A feature-rich spiritual companion application designed to provide users with daily devotional content, structured reading plans, offline access, and audio streaming capabilities.",
@@ -232,16 +239,17 @@ const Projects = () => {
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Mydevotionalbook",
       appstore: "https://apps.apple.com/ng/app/my-devotional-app/id6740229712",
-      playstore: "https://play.google.com/store/apps/details?id=com.mydevotionalbook.app&hl=en"
+      playstore:
+        "https://play.google.com/store/apps/details?id=com.mydevotionalbook.app&hl=en",
     },
     {
-      image: "./LearnliftImages/learnlift1.png",
+      image: "/LearnliftImages/learnlift1.png",
       images: [
-        "./LearnliftImages/learnlift1.png",
-        "./LearnliftImages/learnlift2.png",
-        "./LearnliftImages/learnlift3.png",
-        "./LearnliftImages/learnlift5.png",
-        "./LearnliftImages/learnlift4.png",
+        "/LearnliftImages/learnlift1.png",
+        "/LearnliftImages/learnlift2.png",
+        "/LearnliftImages/learnlift3.png",
+        "/LearnliftImages/learnlift5.png",
+        "/LearnliftImages/learnlift4.png",
       ],
       name: "Learnlift",
       info: "An educational application designed to enhance learning outcomes for primary, secondary, and tertiary students through video courses, AI-driven study recommendations, and interactive CBT (Computer-Based Test) practice modules.",
@@ -249,24 +257,26 @@ const Projects = () => {
       githubLink: "",
       githubApk: "https://github.com/NonsoCoding/Giftincash",
       appstore: "https://apps.apple.com/ng/app/learnlift/id6743348693",
-      playstore: "https://play.google.com/store/apps/details?id=com.imoh.learnlift&pcampaignid=web_share"
+      playstore:
+        "https://play.google.com/store/apps/details?id=com.imoh.learnlift&pcampaignid=web_share",
     },
-     {
-      image: "./GiftincashImages/Giftincash4.png",
+    {
+      image: "/GiftincashImages/Giftincash4.png",
       images: [
-        "./GiftincashImages/Giftincash1.png",
-        "./GiftincashImages/Giftincash2.png",
-        "./GiftincashImages/Giftincash3.png",
-        "./GiftincashImages/Giftincash4.png",
-        "./GiftincashImages/Giftincash5.png",
+        "/GiftincashImages/Giftincash1.png",
+        "/GiftincashImages/Giftincash2.png",
+        "/GiftincashImages/Giftincash3.png",
+        "/GiftincashImages/Giftincash4.png",
+        "/GiftincashImages/Giftincash5.png",
       ],
       name: "Giftincash",
       info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
       stack: "JavaScript, ReactNative, Expo, Tailwind",
       githubLink: "",
       githubApk: "https://github.com/404Enterprise/gift-in-cash",
-      appstore: "",
-      playstore: ""
+      appstore: "https://apps.apple.com/ma/app/giftincash/id6790216001",
+      playstore:
+        "https://play.google.com/store/apps/details?id=com.nonsolovescoding.GIFTINCASH&hl=en",
     },
   ];
 
@@ -326,7 +336,7 @@ const Projects = () => {
   };
 
   return (
-    <section className="w-full">
+    <section id="projects" className="w-full scroll-mt-24">
       <div className="w-[90%] mx-auto flex flex-col gap-15">
         {/* Main Header */}
         <motion.div
@@ -337,11 +347,11 @@ const Projects = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="inline-block">
-            <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
+            <p className="text-4xl md:text-5xl text-ink font-bold tracking-tight">
               My Projects
             </p>
             <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
+              className="h-1 bg-gradient-to-r from-transparent via-ink to-transparent mt-2 rounded-full"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -349,7 +359,7 @@ const Projects = () => {
             />
           </div>
           <motion.p
-            className="text-[#A7A7A7]"
+            className="text-ink-3"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -369,7 +379,7 @@ const Projects = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-3xl text-[#A7A7A7] font-semibold">
+              <p className="text-3xl text-ink-3 font-semibold">
                 Website Projects
               </p>
             </motion.div>
@@ -390,7 +400,7 @@ const Projects = () => {
                       y: -10,
                       transition: { duration: 0.3 },
                     }}
-                    className="bg-[#363636] rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(211,211,211,0.15)] transition-shadow duration-300"
+                    className="bg-elevated rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_var(--glow-soft)] transition-shadow duration-300"
                   >
                     {/* Image with zoom effect on hover */}
                     <div className="overflow-hidden">
@@ -405,7 +415,7 @@ const Projects = () => {
                       />
                     </div>
 
-                    <div className="p-6 text-[#CCCCCC] flex flex-col gap-4">
+                    <div className="p-6 text-ink flex flex-col gap-4">
                       <p className="text-xl font-semibold">{items.name}</p>
                       <p className="font-light">{items.info}</p>
                       <p className="font-light">
@@ -418,9 +428,9 @@ const Projects = () => {
                           whileHover={{ x: 5 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <img className="h-5" src="./link.svg" alt="" />
+                          <img className="h-5" src="/link.svg" alt="" />
                           <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
+                            className="border-b-2 text-xs hover:border-b-bright hover:text-bright transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={items.projectLink}
@@ -428,21 +438,21 @@ const Projects = () => {
                             Live Preview
                           </a>
                         </motion.div>
-                        <motion.div
+                        {/* <motion.div
                           className="flex items-center gap-4"
                           whileHover={{ x: 5 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <img className="h-5" src="./github.svg" alt="" />
+                          <img className="h-5" src="/github.svg" alt="" />
                           <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
+                            className="border-b-2 text-xs hover:border-b-bright hover:text-bright transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={items.githubLink}
                           >
                             View Code
                           </a>
-                        </motion.div>
+                        </motion.div> */}
                       </div>
                     </div>
                   </motion.div>
@@ -463,7 +473,7 @@ const Projects = () => {
                 href={"../projects/websites"}
                 className="flex items-center justify-between"
               >
-                <p className="text-3xl text-[#A7A7A7] font-semibold">
+                <p className="text-3xl text-ink-3 font-semibold">
                   Mobile Application Projects
                 </p>
               </Link>
@@ -490,14 +500,14 @@ const Projects = () => {
                       y: -10,
                       transition: { duration: 0.3 },
                     }}
-                    className="bg-[#363636] pt-4 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(211,211,211,0.15)] transition-shadow duration-300 flex flex-col justify-between"
+                    className="bg-elevated pt-4 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_var(--glow-soft)] transition-shadow duration-300 flex flex-col justify-between"
                   >
                     <ProjectImageSlider
                       images={projectImages}
                       alt={items.name}
                     />
 
-                    <div className="p-6 text-[#CCCCCC] flex flex-col gap-4">
+                    <div className="p-6 text-ink flex flex-col gap-4">
                       <p className="text-xl font-semibold">{items.name}</p>
                       <p className="font-light">{items.info}</p>
                       <p className="font-light">
@@ -505,52 +515,60 @@ const Projects = () => {
                         {items.stack}
                       </p>
                       <div className="flex justify-between">
-                        <motion.div
+                        {/* <motion.div
                           className="flex items-center gap-2"
                           whileHover={{ x: 5 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <img className="h-5" src="./github.svg" alt="" />
+                          <img className="h-5" src="/github.svg" alt="" />
                           <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
+                            className="border-b-2 text-xs hover:border-b-bright hover:text-bright transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={items.githubLink || items.githubApk}
                           >
                             View Code
                           </a>
-                        </motion.div>
+                        </motion.div> */}
                         <div className="flex items-center gap-5">
-                        <motion.div
-                          className="flex items-center gap-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./Stores/appstore.png" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.appstore}
+                          <motion.div
+                            className="flex items-center gap-2"
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            App Store
-                          </a>
-                        </motion.div>
-                        <motion.div
-                          className="flex items-center gap-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./Stores/google-play.png" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.githubLink || items.githubApk}
+                            <img
+                              className="h-5"
+                              src="/Stores/appstore.png"
+                              alt=""
+                            />
+                            <a
+                              className="border-b-2 text-xs hover:border-b-bright hover:text-bright transition-colors"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={items.appstore}
+                            >
+                              App Store
+                            </a>
+                          </motion.div>
+                          <motion.div
+                            className="flex items-center gap-2"
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            Play Store
-                          </a>
-                        </motion.div>
+                            <img
+                              className="h-5"
+                              src="/Stores/google-play.png"
+                              alt=""
+                            />
+                            <a
+                              className="border-b-2 text-xs hover:border-b-bright hover:text-bright transition-colors"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={items.playstore}
+                            >
+                              Play Store
+                            </a>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
@@ -566,4 +584,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
