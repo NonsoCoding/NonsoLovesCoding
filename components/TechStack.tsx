@@ -1,165 +1,151 @@
 "use client";
 
+import { useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { skillGroups } from "@/data/profile";
+import SectionHeading from "./SectionHeading";
+
+// Marquee row — the headline technologies, always moving.
+const tickerItems = [
+  "OpenAI",
+  "Claude",
+  "LangGraph",
+  "RAG",
+  "FastAPI",
+  "Django REST",
+  "PostgreSQL",
+  "Docker",
+  "Celery",
+  "PyTorch",
+  "Stable Diffusion",
+  "Pinecone",
+  "Cloud Run",
+  "Redis",
+  "TypeScript",
+  "Python",
+  "YOLO",
+  "Firestore",
+  "n8n",
+  "Paystack",
+];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 34 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, ease: "easeOut" as const },
+  },
+};
 
 const TechStack = () => {
-  const TechStacksIcon = [
-    { icon: "./HtmlIcon.svg", name: "HTML" },
-    { icon: "./cssIcon.svg", name: "CSS" },
-    { icon: "./javascriptIcon.svg", name: "Javascript" },
-    { icon: "./typescriptIcon.png", name: "Typescript" },
-    { icon: "./ReactIcon.svg", name: "React Native" },
-    { icon: "./TailwindIcon.svg", name: "Tailwind" },
-    { icon: "./GitIcon.svg", name: "Git" },
-    { icon: "./firerbaseIcon.png", name: "Firebase" },
-    { icon: "./githubIcon.svg", name: "Github" },
-  ];
-
-  // Container animation - for staggering children
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  // Individual card animation
-  const cardVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      scale: 0.8,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  // Header animations
-  const headerVariants: Variants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+  const [expanded, setExpanded] = useState<string | null>(null);
 
   return (
-    <section className="w-full pt-20 md:pt-40 pb-20 relative overflow-hidden">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#D3D3D3]/5 to-transparent pointer-events-none" />
+    <section id="tech-stack" className="relative w-full py-20 md:py-28">
+      {/* Band background so the section separates from About */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-[#1d1d1d]/60 to-transparent" />
 
-      <div className="mx-auto w-[90%] max-w-6xl relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="flex flex-col items-center mb-16 space-y-3"
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="inline-block">
-            <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
-              My Stack
-            </p>
-            <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
+      <div className="relative z-10 mx-auto w-[90%] max-w-7xl">
+        <SectionHeading
+          eyebrow="02 / Capabilities"
+          title="Core skills & technologies"
+          subtitle="Ten disciplines, from model training and generative pipelines down to the infrastructure that keeps them online."
+        />
+
+        {/* ---------- Ticker ---------- */}
+        <div className="marquee-mask relative mt-12 overflow-hidden py-1">
+          <div className="animate-marquee flex w-max gap-3">
+            {[...tickerItems, ...tickerItems].map((item, i) => (
+              <span
+                key={`${item}-${i}`}
+                className="shrink-0 rounded-full border border-[#D3D3D3]/10 bg-[#202020] px-4 py-2 font-mono text-xs whitespace-nowrap text-[#A7A7A7]"
+              >
+                {item}
+              </span>
+            ))}
           </div>
-          <p className="text-[#A7A7A7] text-lg text-center max-w-2xl">
-            Technologies Stacks I&#39;ve been working with recently
-          </p>
-        </motion.div>
+        </div>
 
-        {/* Tools Grid */}
+        {/* ---------- Capability matrix ---------- */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 max-w-7xl mx-auto"
+          className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          {TechStacksIcon.map((items, index) => {
+          {skillGroups.map((group, index) => {
+            const isAccent = group.accent === "accent";
+            const dot = isAccent ? "bg-[#5B9DF9]" : "bg-[#7DD3C0]";
+            const ring = isAccent
+              ? "hover:border-[#5B9DF9]/35 hover:shadow-[0_18px_50px_-24px_rgba(91,157,249,0.5)]"
+              : "hover:border-[#7DD3C0]/35 hover:shadow-[0_18px_50px_-24px_rgba(125,211,192,0.45)]";
+
+            const isOpen = expanded === group.key;
+            const visible = isOpen ? group.items : group.items.slice(0, 8);
+            const hidden = group.items.length - visible.length;
+
             return (
               <motion.div
-                key={index}
-                className="group relative"
+                key={group.key}
                 variants={cardVariants}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
+                className={`group flex flex-col rounded-2xl border border-[#D3D3D3]/10 bg-[#202020] p-6
+                            transition-all duration-300 hover:-translate-y-1 ${ring}`}
               >
-                {/* Card */}
-                <div
-                  className="relative bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] rounded-2xl p-8 
-                              border border-[#D3D3D3]/10 
-                              transition-all duration-300 ease-out
-                              hover:border-[#D3D3D3]/30
-                              hover:shadow-[0_0_30px_rgba(211,211,211,0.1)]
-                              hover:-translate-y-2
-                              aspect-square flex flex-col items-center justify-center"
-                >
-                  {/* Glow effect on hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#D3D3D3]/0 to-[#D3D3D3]/0 
-                                group-hover:from-[#D3D3D3]/5 group-hover:to-transparent 
-                                transition-all duration-300"
-                  />
-
-                  {/* Icon container */}
-                  <motion.div
-                    className="relative z-10 w-full h-full flex items-center justify-center"
-                    whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <img
-                      className="w-16 h-16 md:w-20 md:h-20 object-contain filter drop-shadow-lg"
-                      src={items.icon}
-                      alt={items.name}
-                    />
-                  </motion.div>
-
-                  {/* Tool name - appears on hover */}
-                  <div
-                    className="absolute bottom-4 left-0 right-0 text-center
-                                opacity-0 group-hover:opacity-100
-                                transition-opacity duration-300"
-                  >
-                    <p className="text-[#D3D3D3] text-sm font-medium">
-                      {items.name}
-                    </p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
+                    <h3 className="text-[15px] font-semibold tracking-tight text-[#EDEDED]">
+                      {group.label}
+                    </h3>
                   </div>
+                  <span className="font-mono text-[10px] text-[#575757]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
 
-                {/* Decorative corner accents */}
-                <div
-                  className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-tl-lg"
-                />
-                <div
-                  className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#D3D3D3]/0 
-                              group-hover:border-[#D3D3D3]/50 transition-all duration-300 rounded-br-lg"
-                />
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {visible.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-md border border-[#D3D3D3]/[0.07] bg-[#282828] px-2.5 py-1.5
+                                 font-mono text-[11px] leading-none text-[#A7A7A7]
+                                 transition-colors duration-200 hover:border-[#D3D3D3]/20 hover:text-[#EDEDED]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+
+                  {hidden > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setExpanded(group.key)}
+                      className="cursor-pointer rounded-md border border-dashed border-[#D3D3D3]/15 px-2.5 py-1.5
+                                 font-mono text-[11px] leading-none text-[#757575]
+                                 transition-colors duration-200 hover:border-[#5B9DF9]/40 hover:text-[#5B9DF9]"
+                    >
+                      +{hidden} more
+                    </button>
+                  )}
+
+                  {isOpen && (
+                    <button
+                      type="button"
+                      onClick={() => setExpanded(null)}
+                      className="cursor-pointer rounded-md border border-dashed border-[#D3D3D3]/15 px-2.5 py-1.5
+                                 font-mono text-[11px] leading-none text-[#757575]
+                                 transition-colors duration-200 hover:border-[#5B9DF9]/40 hover:text-[#5B9DF9]"
+                    >
+                      show less
+                    </button>
+                  )}
+                </div>
               </motion.div>
             );
           })}

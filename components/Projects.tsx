@@ -1,8 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  Github,
+  Terminal,
+} from "lucide-react";
+import { aiProjects, backendProjects } from "@/data/profile";
+import SectionHeading from "./SectionHeading";
 
 interface ProjectImageSliderProps {
   images: string[];
@@ -147,58 +154,42 @@ const ProjectImageSlider: React.FC<ProjectImageSliderProps> = ({
   );
 };
 
-const Projects = () => {
-  const WebProjectsList = [
-    {
-      image: "./GiftincashImages/GiftincashWeb.png",
-      name: "Giftincash",
-      info: "A feature-rich digital gifting and financial rewards application offering seamless user authentication, personalized user notifications, and instant transactional updates.",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://giftincash.com/",
-      githubLink: "https://github.com/404Enterprise/gift-in-cash",
+/** Status chip shared by the AI and backend cards. */
+const StatusBadge = ({ status }: { status: string }) => {
+  const map: Record<string, { label: string; className: string }> = {
+    live: {
+      label: "Live in production",
+      className: "border-[#7DD3C0]/30 bg-[#7DD3C0]/[0.08] text-[#7DD3C0]",
     },
-    {
-      image: "./LasMobileImages/LasWeb.png",
-      name: "Las Mobile",
-      info: "An enterprise-grade logistics and delivery management application built for real-time shipment visibility, automated routing, and reliable field operation tracking.",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://www.lastechnologiesltd.com/",
-      githubLink: "https://github.com/NonsoCoding/Las-Mobile-Website",
+    building: {
+      label: "In development",
+      className: "border-[#5B9DF9]/30 bg-[#5B9DF9]/[0.08] text-[#5B9DF9]",
     },
-    {
-      image: "./RuthEgbeImages/ruthegbe.png",
-      name: "RuthEgbe",
-      info: "A professional thought-leadership and consultation platform designed for a development catalyst, change engineer, and leadership coach, built to showcase programs, mentorship ecosystems, and insights.",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://ruthegbe.com/",
-      githubLink: "https://github.com/NonsoCoding/Homez",
+    shipped: {
+      label: "Shipped",
+      className: "border-[#D3D3D3]/15 bg-[#282828] text-[#A7A7A7]",
     },
-    {
-      image: "./404enterprise/404image.png",
-      name: "404Enterprise",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://404enterprise.com/",
-      githubLink: "https://github.com/NonsoCoding/Homez",
+    prototype: {
+      label: "Prototype",
+      className: "border-[#D3D3D3]/15 bg-[#282828] text-[#8A8A8A]",
     },
-    {
-      image: "./anhelina/anhelinaImage.png",
-      name: "Anhelina",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://anhelina.vercel.app/",
-      githubLink: "https://github.com/NonsoCoding/anhelina-front",
-    },
-    {
-      image: "./CapitalGadgetz/capitalImage.png",
-      name: "CapitalGadgetz",
-      info: "This is sample project description random things are here in description This is sample project lorem ipsum generator for dummy content",
-      stack: "HTML , JavaScript, SASS, React",
-      projectLink: "https://capital-gadgetz.vercel.app/",
-      githubLink: "https://github.com/NonsoCoding/CapitalGadgetz",
-    },
-  ];
+  };
 
+  const meta = map[status] ?? map.shipped;
+
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] whitespace-nowrap ${meta.className}`}
+    >
+      {status === "live" && (
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#7DD3C0]" />
+      )}
+      {meta.label}
+    </span>
+  );
+};
+
+const Projects = () => {
   const MobileAppProjectList = [
     {
       image: "./LasMobileImages/Las1.png",
@@ -270,31 +261,13 @@ const Projects = () => {
     },
   ];
 
-  // Header animation
-  const headerVariants: Variants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+  const tabs = [
+    { key: "ai", label: "AI & LLM Systems", count: aiProjects.length },
+    { key: "backend", label: "Backend & APIs", count: backendProjects.length },
+    { key: "apps", label: "Live Apps", count: MobileAppProjectList.length },
+  ] as const;
 
-  // Section title animation
-  const sectionTitleVariants: Variants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]["key"]>("ai");
 
   // Container for staggered cards
   const containerVariants: Variants = {
@@ -302,7 +275,7 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -311,259 +284,316 @@ const Projects = () => {
   const cardVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      scale: 0.9,
+      y: 40,
+      scale: 0.96,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.5,
+        duration: 0.45,
         ease: "easeOut" as const,
       },
     },
   };
 
   return (
-    <section className="w-full">
-      <div className="w-[90%] mx-auto flex flex-col gap-15">
-        {/* Main Header */}
-        <motion.div
-          className="items-center flex flex-col gap-4"
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="inline-block">
-            <p className="text-4xl md:text-5xl text-[#D3D3D3] font-bold tracking-tight">
-              My Projects
-            </p>
-            <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[#D3D3D3] to-transparent mt-2 rounded-full"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            />
-          </div>
-          <motion.p
-            className="text-[#A7A7A7]"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            Things I&apos;ve built so far
-          </motion.p>
-        </motion.div>
+    <section id="projects" className="relative w-full py-20 md:py-28">
+      <div className="mx-auto flex w-[90%] max-w-7xl flex-col gap-12">
+        <SectionHeading
+          eyebrow="04 / Selected work"
+          title="Key projects"
+          subtitle="AI systems, the production APIs behind them, and the apps they power — live on iOS, Google Play, and the web."
+        />
 
-        <div className="flex flex-col gap-25">
-          {/* Website Projects Section */}
-          <div className="flex flex-col gap-10">
-            <motion.div
-              className="flex justify-between items-center"
-              variants={sectionTitleVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <p className="text-3xl text-[#A7A7A7] font-semibold">
-                Website Projects
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              {WebProjectsList.map((items, index) => {
-                return (
-                  <motion.div
-                    key={index}
-                    variants={cardVariants}
-                    whileHover={{
-                      y: -10,
-                      transition: { duration: 0.3 },
-                    }}
-                    className="bg-[#363636] rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(211,211,211,0.15)] transition-shadow duration-300"
-                  >
-                    {/* Image with zoom effect on hover */}
-                    <div className="overflow-hidden">
-                      <motion.img
-                        className="w-full"
-                        src={items.image}
-                        alt={items.name}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        width={500}
-                        height={300}
-                      />
-                    </div>
-
-                    <div className="p-6 text-[#CCCCCC] flex flex-col gap-4">
-                      <p className="text-xl font-semibold">{items.name}</p>
-                      <p className="font-light">{items.info}</p>
-                      <p className="font-light">
-                        <span className="font-semibold">Tech stack :</span>{" "}
-                        {items.stack}
-                      </p>
-                      <div className="flex justify-between">
-                        <motion.div
-                          className="flex items-center gap-4"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./link.svg" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.projectLink}
-                          >
-                            Live Preview
-                          </a>
-                        </motion.div>
-                        <motion.div
-                          className="flex items-center gap-4"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./github.svg" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.githubLink}
-                          >
-                            View Code
-                          </a>
-                        </motion.div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </div>
-
-          {/* Mobile App Projects Section */}
-          <div className="flex flex-col gap-10">
-            <motion.div
-              variants={sectionTitleVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <Link
-                href={"../projects/websites"}
-                className="flex items-center justify-between"
+        {/* ---------- Tabs ---------- */}
+        <div className="flex flex-wrap gap-2 rounded-2xl border border-[#D3D3D3]/10 bg-[#202020] p-2 md:w-fit">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.key;
+            return (
+              <button
+                key={tab.key}
+                type="button"
+                onClick={() => setActiveTab(tab.key)}
+                className={`relative flex-1 cursor-pointer rounded-xl px-5 py-3 text-sm font-medium whitespace-nowrap transition-colors duration-300 md:flex-none
+                  ${
+                    isActive
+                      ? "text-[#191919]"
+                      : "text-[#8A8A8A] hover:bg-[#D3D3D3]/[0.06] hover:text-[#D3D3D3]"
+                  }`}
               >
-                <p className="text-3xl text-[#A7A7A7] font-semibold">
-                  Mobile Application Projects
-                </p>
-              </Link>
-            </motion.div>
+                {isActive && (
+                  <motion.span
+                    layoutId="project-tab"
+                    className="absolute inset-0 rounded-xl bg-[#EDEDED]"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {tab.label}
+                  <span
+                    className={`font-mono text-[10px] ${
+                      isActive ? "text-[#191919]/60" : "text-[#575757]"
+                    }`}
+                  >
+                    {tab.count}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
+        {/* ---------- Panels ---------- */}
+        <AnimatePresence mode="wait">
+          {/* AI & LLM Systems */}
+          {activeTab === "ai" && (
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 w-[100%] md:w-[100%] lg:w-[85%] mx-auto gap-10"
+              key="ai"
+              className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
               variants={containerVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
+              animate="visible"
+              exit={{ opacity: 0, y: -12 }}
             >
-              {MobileAppProjectList.map((items, index) => {
-                const projectImages =
-                  items.images && items.images.length > 0
-                    ? items.images
-                    : [items.image];
+              {aiProjects.map((project) => (
+                <motion.article
+                  key={project.name}
+                  variants={cardVariants}
+                  whileHover={{ y: -8 }}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-[#D3D3D3]/10 bg-[#202020]
+                             transition-colors duration-300 hover:border-[#5B9DF9]/30
+                             hover:shadow-[0_24px_60px_-32px_rgba(91,157,249,0.55)]"
+                >
+                  {/* Terminal-ish header instead of a screenshot */}
+                  <div className="dot-bg relative border-b border-[#D3D3D3]/10 bg-[#1a1a1a] px-6 py-7">
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#5B9DF9]/[0.07] to-transparent" />
+                    <div className="relative flex items-start justify-between gap-4">
+                      <Terminal className="h-5 w-5 shrink-0 text-[#5B9DF9]" />
+                      <StatusBadge status={project.status} />
+                    </div>
+                    <h3 className="relative mt-5 text-lg leading-snug font-bold text-[#EDEDED]">
+                      {project.name}
+                    </h3>
+                    <p className="relative mt-1.5 font-mono text-[11px] text-[#7DD3C0]">
+                      {project.role}
+                    </p>
+                  </div>
 
-                return (
-                  <motion.div
-                    key={index}
-                    variants={cardVariants}
-                    whileHover={{
-                      y: -10,
-                      transition: { duration: 0.3 },
-                    }}
-                    className="bg-[#363636] pt-4 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_50px_rgba(211,211,211,0.15)] transition-shadow duration-300 flex flex-col justify-between"
-                  >
-                    <ProjectImageSlider
-                      images={projectImages}
-                      alt={items.name}
-                    />
+                  <div className="flex flex-1 flex-col gap-5 p-6">
+                    <p className="text-[13.5px] leading-relaxed text-[#9A9A9A]">
+                      {project.info}
+                    </p>
 
-                    <div className="p-6 text-[#CCCCCC] flex flex-col gap-4">
-                      <p className="text-xl font-semibold">{items.name}</p>
-                      <p className="font-light">{items.info}</p>
-                      <p className="font-light">
-                        <span className="font-semibold">Tech stack :</span>{" "}
-                        {items.stack}
+                    <ul className="space-y-2">
+                      {project.highlights.map((highlight) => (
+                        <li
+                          key={highlight}
+                          className="flex items-center gap-2.5 text-[12.5px] text-[#A7A7A7]"
+                        >
+                          <span className="h-1 w-1 shrink-0 rounded-full bg-[#5B9DF9]" />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-auto flex flex-wrap gap-1.5 border-t border-[#D3D3D3]/[0.08] pt-5">
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-md bg-[#282828] px-2 py-1 font-mono text-[10.5px] text-[#8A8A8A]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Backend & APIs */}
+          {activeTab === "backend" && (
+            <motion.div
+              key="backend"
+              className="grid grid-cols-1 gap-6 lg:grid-cols-2"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: -12 }}
+            >
+              {backendProjects.map((project) => (
+                <motion.article
+                  key={project.name}
+                  variants={cardVariants}
+                  whileHover={{ y: -8 }}
+                  className="group flex flex-col rounded-2xl border border-[#D3D3D3]/10 bg-[#202020] p-6
+                             transition-colors duration-300 hover:border-[#7DD3C0]/30
+                             hover:shadow-[0_24px_60px_-32px_rgba(125,211,192,0.45)] sm:p-7"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-lg leading-snug font-bold text-[#EDEDED]">
+                        {project.name}
+                      </h3>
+                      <p className="mt-1.5 font-mono text-[11px] text-[#5B9DF9]">
+                        {project.role}
                       </p>
-                      <div className="flex justify-between">
-                        <motion.div
-                          className="flex items-center gap-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./github.svg" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.githubLink || items.githubApk}
-                          >
-                            View Code
-                          </a>
-                        </motion.div>
-                        <div className="flex items-center gap-5">
-                        <motion.div
-                          className="flex items-center gap-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./Stores/appstore.png" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.appstore}
-                          >
-                            App Store
-                          </a>
-                        </motion.div>
-                        <motion.div
-                          className="flex items-center gap-2"
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <img className="h-5" src="./Stores/google-play.png" alt="" />
-                          <a
-                            className="border-b-2 text-xs hover:border-b-white hover:text-white transition-colors"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={items.githubLink || items.githubApk}
-                          >
-                            Play Store
-                          </a>
-                        </motion.div>
+                    </div>
+                    <StatusBadge status={project.status} />
+                  </div>
+
+                  <p className="mt-5 text-[13.5px] leading-relaxed text-[#9A9A9A]">
+                    {project.info}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-1.5">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md bg-[#282828] px-2 py-1 font-mono text-[10.5px] text-[#8A8A8A]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.link && (
+                    <div className="mt-6 border-t border-[#D3D3D3]/[0.08] pt-5">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-mono text-xs text-[#A7A7A7]
+                                   transition-colors duration-200 hover:text-[#7DD3C0]"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        {project.linkLabel || "Visit"}
+                      </a>
+                    </div>
+                  )}
+                </motion.article>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Live Apps — the mobile products these backends power */}
+          {activeTab === "apps" && (
+            <motion.div
+              key="apps"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, y: -12 }}
+            >
+              <p className="mb-8 max-w-3xl rounded-xl border border-[#D3D3D3]/10 bg-[#1d1d1d] px-5 py-4 text-[13px] leading-relaxed text-[#8A8A8A]">
+                <span className="text-[#D3D3D3]">Note:</span> these are the shipped
+                products the APIs above run behind — backend, payments, and infrastructure
+                work, live on the App Store and Google Play.
+              </p>
+
+              <motion.div
+                className="mx-auto grid w-full grid-cols-1 gap-10 md:grid-cols-2 lg:w-[92%]"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {MobileAppProjectList.map((items, index) => {
+                  const projectImages =
+                    items.images && items.images.length > 0
+                      ? items.images
+                      : [items.image];
+                  const codeLink = items.githubLink || items.githubApk;
+
+                  return (
+                    <motion.div
+                      key={index}
+                      variants={cardVariants}
+                      whileHover={{
+                        y: -10,
+                        transition: { duration: 0.3 },
+                      }}
+                      className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D3D3D3]/10 bg-[#202020] pt-4 shadow-2xl
+                                 transition-all duration-300 hover:border-[#5B9DF9]/25 hover:shadow-[0_24px_60px_-30px_rgba(91,157,249,0.45)]"
+                    >
+                      <ProjectImageSlider
+                        images={projectImages}
+                        alt={items.name}
+                      />
+
+                      <div className="flex flex-col gap-4 p-6 text-[#CCCCCC]">
+                        <p className="text-xl font-semibold text-[#EDEDED]">{items.name}</p>
+                        <p className="text-[13.5px] leading-relaxed font-light text-[#9A9A9A]">
+                          {items.info}
+                        </p>
+                        <p className="font-mono text-[11px] text-[#8A8A8A]">
+                          <span className="text-[#5B9DF9]">stack:</span> {items.stack}
+                        </p>
+
+                        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#D3D3D3]/[0.08] pt-4">
+                          {codeLink && (
+                            <motion.a
+                              className="flex items-center gap-2 font-mono text-[11px] text-[#A7A7A7] transition-colors hover:text-[#EDEDED]"
+                              whileHover={{ x: 3 }}
+                              transition={{ duration: 0.2 }}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={codeLink}
+                            >
+                              <Github className="h-4 w-4" />
+                              View Code
+                            </motion.a>
+                          )}
+
+                          <div className="flex items-center gap-5">
+                            {items.appstore && (
+                              <motion.a
+                                className="flex items-center gap-2 font-mono text-[11px] text-[#A7A7A7] transition-colors hover:text-[#EDEDED]"
+                                whileHover={{ x: 3 }}
+                                transition={{ duration: 0.2 }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={items.appstore}
+                              >
+                                <img
+                                  className="h-4"
+                                  src="./Stores/appstore.png"
+                                  alt="App Store"
+                                />
+                                App Store
+                              </motion.a>
+                            )}
+                            {items.playstore && (
+                              <motion.a
+                                className="flex items-center gap-2 font-mono text-[11px] text-[#A7A7A7] transition-colors hover:text-[#EDEDED]"
+                                whileHover={{ x: 3 }}
+                                transition={{ duration: 0.2 }}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={items.playstore}
+                              >
+                                <img
+                                  className="h-4"
+                                  src="./Stores/google-play.png"
+                                  alt="Play Store"
+                                />
+                                Play Store
+                              </motion.a>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
             </motion.div>
-          </div>
-        </div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
 };
 
 export default Projects;
-
