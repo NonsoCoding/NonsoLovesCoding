@@ -27,7 +27,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            My name is Samuel Johnson
+            My name is Chukwunonso Obi
           </motion.p>
           <motion.p
             className="text-xl"
