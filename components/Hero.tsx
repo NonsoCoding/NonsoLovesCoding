@@ -30,7 +30,7 @@ const Hero = () => {
       <div className="absolute -top-40 -right-32 w-[520px] h-[520px] rounded-full bg-accent/10 blur-[130px] pointer-events-none" />
       <div className="absolute -bottom-48 -left-32 w-[460px] h-[460px] rounded-full bg-accent-2/10 blur-[130px] pointer-events-none" />
 
-      <div className="relative z-10 mx-auto w-[90%] max-w-6xl flex flex-col-reverse lg:flex-row gap-14 lg:gap-16 items-center">
+      <div className="relative z-10 mx-auto w-[90%] max-w-6xl flex flex-col lg:flex-row gap-14 lg:gap-16 items-center">
         {/* Copy */}
         <div className="w-full lg:w-[58%] text-center lg:text-left">
           <motion.div
@@ -192,7 +192,7 @@ const Hero = () => {
 
         {/* Portrait */}
         <motion.div
-          className="w-[72%] sm:w-[55%] lg:w-[42%] relative"
+          className=" sm:w-[55%] lg:w-[42%] relative"
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.25 }}
