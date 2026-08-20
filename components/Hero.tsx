@@ -10,7 +10,10 @@ const Hero = () => {
   const roleSequence = profile.roles.flatMap((role) => [role, 2000]);
 
   return (
-    <section id="home" className="relative w-full overflow-hidden pt-14 pb-20 md:pt-20 md:pb-28">
+    <section
+      id="home"
+      className="relative w-full overflow-hidden pt-14 pb-20 md:pt-20 md:pb-28"
+    >
       {/* Blueprint grid + accent bloom */}
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-70" />
       <div className="pointer-events-none absolute -top-40 -left-32 h-[420px] w-[420px] rounded-full bg-[#5B9DF9]/10 blur-[120px]" />
@@ -88,10 +91,10 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             I build and ship intelligent systems end to end — from{" "}
-            <span className="text-[#D3D3D3]">LLM agents and RAG pipelines</span> to the{" "}
-            <span className="text-[#D3D3D3]">production backends</span> that power them.
-            Deep AI knowledge with the backend discipline to take models from prototype to
-            production.
+            <span className="text-[#D3D3D3]">LLM agents and RAG pipelines</span>{" "}
+            to the <span className="text-[#D3D3D3]">production backends</span>{" "}
+            that power them. Deep AI knowledge with the backend discipline to
+            take models from prototype to production.
           </motion.p>
 
           {/* Meta row */}
@@ -168,7 +171,7 @@ const Hero = () => {
               </div>
               <img
                 className="w-full object-cover"
-                src="./pfp.jpeg"
+                src="./johnsonpfp.jpeg"
                 alt="Johnson Samuel Oluwatoyosi"
               />
               <div className="border-t border-[#D3D3D3]/10 bg-[#1c1c1c] px-4 py-3 font-mono text-[11px] leading-relaxed">
@@ -197,7 +200,9 @@ const Hero = () => {
         <div className="grid grid-cols-2 divide-[#D3D3D3]/10 overflow-hidden rounded-2xl border border-[#D3D3D3]/10 bg-[#202020]/70 backdrop-blur-sm sm:grid-cols-4 sm:divide-x">
           {stats.map((stat) => (
             <div key={stat.label} className="px-5 py-6 text-center sm:px-6">
-              <p className="text-2xl font-bold text-[#EDEDED] sm:text-3xl">{stat.value}</p>
+              <p className="text-2xl font-bold text-[#EDEDED] sm:text-3xl">
+                {stat.value}
+              </p>
               <p className="mt-1.5 text-[11px] leading-snug text-[#757575] sm:text-xs">
                 {stat.label}
               </p>
