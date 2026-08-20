@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+// The global stylesheet is processed by Next.js at runtime.
+// @ts-expect-error TypeScript may not have a declaration for CSS side-effect imports.
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Johnson Samuel Oluwatoyosi — AI Engineer & Backend Architect",
