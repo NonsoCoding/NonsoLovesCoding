@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     template: "%s — Chukwunonso Obi",
   },
   description,
+  verification: {
+    google: "zq_Dp_XLFf5LRlhNPlElZuCdzIX0ytiHekH4RBavtDI",
+  },
   keywords: [
     "Mobile Engineer",
     "Solutions Architect",
@@ -75,6 +78,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
+        <meta
+          name="google-site-verification"
+          content="zq_Dp_XLFf5LRlhNPlElZuCdzIX0ytiHekH4RBavtDI"
+        />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
